@@ -1,4 +1,3 @@
-import Tasks from "./Tasks";
 import React from "react";
 import Section from "./Section";
 
