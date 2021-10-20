@@ -4,14 +4,6 @@
     transition: 0.3s;
 }
 
-.dropdown {
-    z-index: 0;
-}
-
-.zindex {
-    z-index: 1;
-}
-
 div span {
     float: right;
 }

@@ -26,7 +26,9 @@ function Tasks(props) {
                     if(item.status === props.sort) {
                         return (
                             <div className="col">
-                                <Task key={item.id} id={item.id} name={item.name} description={item.description} status={item.status}/>
+                                <Task key={item.id} id={item.id} name={item.name} description={item.description} status={item.status}
+                                priority={item.priority}
+                                />
                             </div>
                         );
                     }

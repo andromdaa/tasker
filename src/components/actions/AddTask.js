@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, InputGroup, Input} from 'reactstrap';
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    InputGroup,
+    Input,
+    Dropdown,
+    DropdownToggle, DropdownMenu, DropdownItem
+} from 'reactstrap';
 
 function AddTask(props) {
     const {
@@ -10,8 +20,11 @@ function AddTask(props) {
     const [isOpen, setOpen] = useState(false);
     const [ name, setName ] = useState();
     const [ description, setDescription ] = useState();
+    const [ isDropdownOpen, setDropdownOpen ] = useState();
+    const [ currentPriority, setCurrentPriority ] = useState("None");
 
     const toggle = () => setOpen(!isOpen);
+
 
     async function postTask() {
         const options = {
@@ -23,14 +36,13 @@ function AddTask(props) {
             body: JSON.stringify({
                 status: props.addTo,
                 name: name,
-                description: description
+                description: description,
+                priority: currentPriority
             })
         };
         await fetch(`http://localhost:8080/tasks`, options);
         toggle();
     }
-
-
 
     return (
         <div>
@@ -44,6 +56,20 @@ function AddTask(props) {
                     <br />
                     <InputGroup>
                         <Input placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                    </InputGroup>
+                    <br />
+                    <InputGroup>
+                        <Dropdown isOpen={isDropdownOpen} toggle={() => setDropdownOpen(!isDropdownOpen)}>
+                            <DropdownToggle caret>
+                                Priority: {currentPriority}
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem onClick={() => setCurrentPriority("High")}>High</DropdownItem>
+                                <DropdownItem onClick={() => setCurrentPriority("Medium")}>Medium</DropdownItem>
+                                <DropdownItem onClick={() => setCurrentPriority("Low")}>Low</DropdownItem>
+                                <DropdownItem onClick={() => setCurrentPriority(null)}>None</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </InputGroup>
 
                 </ModalBody>

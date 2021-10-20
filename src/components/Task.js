@@ -1,7 +1,8 @@
-import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
+import {Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 import React, { useState} from "react";
 import '../css/task.css';
 import DeleteTask from "./actions/DeleteTask";
+import PriorityTag from "./PriorityTag";
 
 function Task(props) {
     const [ isOpen, setOpen ] = useState();
@@ -21,12 +22,14 @@ function Task(props) {
     }
 
     return (
-        <div className="card" style={{"margin-bottom": "2%"}}>
+        <div className="card" style={{marginBottom: "2%"}}>
             <div className="card-body">
-                <h5 className="card-title">{name}</h5>
+                <h5 className="card-title">{name}
+                    <PriorityTag priority={props.priority}/>
+                </h5>
                 <p className="card-text">{description}</p>
-                    <Dropdown isOpen={isOpen} toggle={() => setOpen(!isOpen)} >
-                        <DropdownToggle caret color="secondary">
+                    <Dropdown  isOpen={isOpen} toggle={() => setOpen(!isOpen)} >
+                        <DropdownToggle outline caret color="secondary">
                             Move to
                         </DropdownToggle>
                         <span>

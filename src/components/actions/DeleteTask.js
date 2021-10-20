@@ -1,4 +1,5 @@
 import {Button} from "reactstrap";
+import { ReactComponent as TrashIcon } from "../static/trash.svg";
 
 function DeleteTask(props) {
 
@@ -10,8 +11,9 @@ function DeleteTask(props) {
     }
 
     return (
-        <div style={{zIndex:100}}>
-            <Button outline color="primary" onClick={() => deleteTask(props.id)}>Delete</Button>
+        <div>
+            <Button outline color="danger" onClick={() => deleteTask(props.id)}><TrashIcon/>
+            </Button>
         </div>
     );
 }
