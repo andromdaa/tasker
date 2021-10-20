@@ -4,7 +4,7 @@ import AddTask from "./actions/AddTask";
 
 function Section(props) {
     return (
-        <div className="col">
+        <div className="col" style={{margin: "1.5%"}}>
             <div className="text-left margin">
                 <h4>{props.status}
                     <span style={{float: "right"}}>
